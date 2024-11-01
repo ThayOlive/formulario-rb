@@ -1,0 +1,1 @@
+web: gunicorn formulario.wsgi --log-file -
