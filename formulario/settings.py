@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -83,7 +84,7 @@ WSGI_APPLICATION = 'formulario.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+#= https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 #DATABASES = {
 #      'default': {
@@ -92,22 +93,24 @@ WSGI_APPLICATION = 'formulario.wsgi.application'
 #   }
 #}
 
+"""
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'formulariort',
-        'USER': 'formadmin',
-        'PASSWORD': 'mypassword',
+        'USER': 'postgres',
+        'PASSWORD': 'Jesus',
         'HOST': 'localhost',
-        'PORT': '3306',
+        'PORT': '5432',
         'OPTIONS': {
-            'charset': 'utf8mb4',
-        #    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'init_command': "SET sql_mode=''"
-        }
+            'client_encoding': 'UTF8',
+        },
     }
 }
-
+"""
+DATABASES = {
+    'default': dj_database_url.config()
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -144,6 +147,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
